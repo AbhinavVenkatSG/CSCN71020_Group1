@@ -2,15 +2,9 @@
 #include <math.h>
 
 void get_triangle_input() {
-
-    int test;
-
 }
 
 void get_rectangle_input() {
-
-
-
 
 }
 
