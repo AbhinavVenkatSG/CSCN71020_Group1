@@ -1,9 +1,28 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
 
 void get_triangle_input() {
 
-    int test;
+    // Function 1:
+    // Separate function to get side length input from user as floats
+    // Separate function to validate, no characters, no special characters, no neg numbers
+
+    // initialize variables as floats
+    float sideA = 0.0;
+    float sideB = 0.0;
+    float sideC = 0.0;
+
+
+
+    // Validate Input
+
+    
+    
+
+
+	// Function 2:
+    // Final function to calculate the angle
 
 }
 
