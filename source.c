@@ -1,51 +1,102 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
+#include <ctype.h>
+
+
+#define NUMLIMIT 100
+
 
 void get_triangle_input() {
     printf("Triangle\n\n");
-  
+
     // Function 1:
   // Separate function to get side length input from user as floats
   // Separate function to validate, no characters, no special characters, no neg numbers
 
-  // initialize variables as floats
-    float sideA = 0;
-    float sideB = 0;
-    float sideC = 0;
+  // initialize variables as strings
+    char sideA[NUMLIMIT];
+    char sideB[NUMLIMIT];
+    char sideC[NUMLIMIT];
 
 
 // Side A
 
    // Side A Input
-    printf("Enter the first side: ");
-    int sideASymbols = scanf("%f", &sideA);
+    printf("Enter the first side: "); 
+    int sideASymbols = scanf("%s", sideA);
+
+    int sideALength = strlen(sideA);
+
+    for (int i = 0; i < sideALength;) {
+        if (isdigit(sideA[i])) {
+            i++;
+        }
+        // add if statement to check for decimal points
+        else {
+            printf("Input Invalid");
+            return 1;
+        }
+    }
+
    
-   // Side B Input
+    // Side B Input
     printf("Enter the second side: ");
-    int sideBSymbols = scanf("%f", &sideB);
+    int sideBSymbols = scanf("%s", sideB);
 
-   // Side C Input
+   int sideBLength = strlen(sideB);
+
+   for (int i = 0; i < sideBLength;) {
+        if (isdigit(sideB[i])) {
+            i++;
+        }
+        // add if statement to check for decimal points
+        else {
+            printf("Invalid Input");
+            return 1;
+        }
+        
+    }
+   
+    // Side C Input
     printf("Enter the third side: ");
-    int sideCSymbols = scanf("%f", &sideC);
+    int sideCSymbols = scanf("%s", sideC);
 
-    // Validate
-    if (sideASymbols != 1 || sideA < 0 || sideBSymbols != 1 || sideB < 0 || sideCSymbols != 1 || sideC < 0) {
+    int sideCLength = strlen(sideC);
+
+    for (int i = 0; i < sideCLength;) {
+       if (isdigit(sideC[i])) {
+            i++;
+        }
+       // add if statement to check for decimal points
+        else {
+            printf("Input Invalid\n");
+            return 1;
+        }
+    }
+
+  strtof(sideA, NULL);
+  strtof(sideB, NULL);
+  strtof(sideC, NULL);
+
+     //Validate
+    if (sideA < 0 || sideB < 0 || sideC < 0) {
         printf("Invalid Input.\n");
     }
 
     else {
-        printf("Jasons function should be here");
-        // Call Jasons Function
+        printf("\nJasons function should be here");
+         //Call Jasons Function
     }
 
-    // Function 2:
+     //Function 2:
     // Final function to calculate the angle
 
 }
 
 
-void get_rectangle_input() {
+   void get_rectangle_input() {
     printf("Rectangle\n");
 
 
