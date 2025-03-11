@@ -8,8 +8,7 @@ void get_triangle_input() {
 }
 
 void get_rectangle_input() {
-
-
+    int test;
 
 
 }
