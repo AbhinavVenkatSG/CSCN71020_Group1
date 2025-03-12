@@ -85,9 +85,16 @@ void get_triangle_input() {
         printf("Invalid Input.\n");
     }
 
+    //Call Jasons Function
+    else if(sideA+sideB>sideC && sideB+sideC>sideA && sideA+sideC>sideB) {
+        
+        return sideA, sideB, sideC;
+         
+    }
     else {
-        printf("\nJasons function should be here");
-         //Call Jasons Function
+        
+        printf("Not a Triangle");
+    
     }
 
      //Function 2:
