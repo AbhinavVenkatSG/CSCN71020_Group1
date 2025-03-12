@@ -81,9 +81,10 @@ void get_triangle_input() {
   strtof(sideC, NULL);
 
      //Validate
-    if (sideA < 0 || sideB < 0 || sideC < 0) {
-        printf("Invalid Input.\n");
-    }
+     if (sideA + sideB > sideC && sideB + sideC > sideA && sideA + sideC > sideB) {
+
+        return sideA, sideB, sideC;
+        calculate_angles(int* sideA, int* sideC, int* sideB, double* angle_A, double* angle_B, double* angle_C);
 
     else {
         
