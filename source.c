@@ -110,7 +110,6 @@ void get_triangle_input() {
 
         printf("The angles of the triangles are:%d,%d,%d", *angle_A, *angle_B, *angle_C);
     }
-
 }
 
 
