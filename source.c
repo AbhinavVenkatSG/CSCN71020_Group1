@@ -1,3 +1,4 @@
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
@@ -116,6 +117,7 @@ void get_triangle_input() {
 
 
    void get_rectangle_input() {
+       int test;
     printf("Rectangle\n");
 
 
