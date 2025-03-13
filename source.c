@@ -4,83 +4,14 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
+#include "validatetriangle.h";
 
 
 #define NUMLIMIT 100
 
 
-void get_triangle_input() {
-    printf("Triangle\n\n");
-
-    // Function 1:
-  // Separate function to get side length input from user as floats
-  // Separate function to validate, no characters, no special characters, no neg numbers
-
-  // initialize variables as strings
-    char sideA[NUMLIMIT];
-    char sideB[NUMLIMIT];
-    char sideC[NUMLIMIT];
-
-
-// Side A
-
-   // Side A Input
-    printf("Enter the first side: "); 
-    int sideASymbols = scanf("%s", sideA);
-
-    int sideALength = strlen(sideA);
-
-    for (int i = 0; i < sideALength;) {
-        if (isdigit(sideA[i])) {
-            i++;
-        }
-        // add if statement to check for decimal points
-        else {
-            printf("Input Invalid");
-            return 1;
-        }
-    }
-
-   
-    // Side B Input
-    printf("Enter the second side: ");
-    int sideBSymbols = scanf("%s", sideB);
-
-   int sideBLength = strlen(sideB);
-
-   for (int i = 0; i < sideBLength;) {
-        if (isdigit(sideB[i])) {
-            i++;
-        }
-        // add if statement to check for decimal points
-        else {
-            printf("Invalid Input");
-            return 1;
-        }
-        
-    }
-   
-    // Side C Input
-    printf("Enter the third side: ");
-    int sideCSymbols = scanf("%s", sideC);
-
-    int sideCLength = strlen(sideC);
-
-    for (int i = 0; i < sideCLength;) {
-       if (isdigit(sideC[i])) {
-            i++;
-        }
-       // add if statement to check for decimal points
-        else {
-            printf("Input Invalid\n");
-            return 1;
-        }
-    }
-
-  strtof(sideA, NULL);
-  strtof(sideB, NULL);
-  strtof(sideC, NULL);
 
      //Validate
   if (sideA + sideB > sideC && sideB + sideC > sideA && sideA + sideC > sideB) {
@@ -126,20 +57,26 @@ void get_triangle_input() {
 
 int main() {
     int choice;
-    while (1) {
+    bool ProgramOn = true;
+    while (ProgramOn) {
         printf("\nMenu:\n1. Triangle Feature\n2. Rectangle Feature\n3. Exit\n");
         printf("Enter your choice: ");
         scanf_s("%d", &choice);
-        if (choice == 1) {
-            get_triangle_input();
-        }
-        else if (choice == 2) {
+        
+        switch (choice)
+        {
+        case 1:
+           ProgramOn = get_triangle_input();
+            break;
+       
+        case 2:
             get_rectangle_input();
-        }
-        else if (choice == 3) {
-           // break;
-        }
-        else {
+            break;
+
+        case 3:
+            ProgramOn = false;
+
+        default:
             printf("Invalid choice. Try again.\n");
         }
    }
