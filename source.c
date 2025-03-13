@@ -118,7 +118,7 @@ void get_triangle_input() {
 
 
    void get_rectangle_input() {
-       int test;
+       int test; 
     printf("Rectangle\n");
 
 
