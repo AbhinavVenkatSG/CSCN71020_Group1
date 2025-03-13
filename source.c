@@ -17,7 +17,7 @@ double clamp(double value, double min, double max) {
     return value;
 }
 
-void get_triangle_input() {
+bool get_triangle_input() {
     printf("Triangle\n\n");
 
     char sideA[NUMLIMIT];
