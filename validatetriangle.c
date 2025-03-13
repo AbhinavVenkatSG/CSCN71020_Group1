@@ -2,7 +2,7 @@
 #include "validatetriangle.h"
 
 
-int get_triangle_input() {
+bool get_triangle_input() {
     printf("Triangle\n\n");
 
     // Function 1:
