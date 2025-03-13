@@ -57,11 +57,7 @@ void get_triangle_input() {
 
     }
 
-    // Side C Input
-    printf("Enter the third side: ");
-    int sideCSymbols = scanf("%s", sideC);
-
-    int sideCLength = strlen(sideC);
+   
 
     for (int i = 0; i < sideCLength;) {
         if (isdigit(sideC[i])) {
