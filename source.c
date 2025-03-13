@@ -4,6 +4,7 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 
 #define NUMLIMIT 100
@@ -125,22 +126,41 @@ void get_triangle_input() {
 
 int main() {
     int choice;
-    while (1) {
+    bool ProgramOn = true;
+    while (ProgramOn) {
         printf("\nMenu:\n1. Triangle Feature\n2. Rectangle Feature\n3. Exit\n");
         printf("Enter your choice: ");
         scanf_s("%d", &choice);
-        if (choice == 1) {
+        
+        switch (choice)
+        {
+        case 1:
             get_triangle_input();
-        }
-        else if (choice == 2) {
+            break;
+       
+        case 2:
             get_rectangle_input();
-        }
-        else if (choice == 3) {
-           // break;
-        }
-        else {
+            break;
+
+        case 3:
+            ProgramOn = false;
+
+        default:
             printf("Invalid choice. Try again.\n");
         }
+        
+        //if (choice == 1) {
+       //     get_triangle_input();
+       // }
+       // else if (choice == 2) {
+       //     get_rectangle_input();
+       // }
+       // else if (choice == 3) {
+           // break;
+       // }
+        //else {
+        //    printf("Invalid choice. Try again.\n");
+       // }
    }
     return 0;
 }
