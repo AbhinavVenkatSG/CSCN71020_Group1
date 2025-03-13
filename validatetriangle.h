@@ -2,4 +2,4 @@
 #include <stdbool.h>
 
 
-int get_triangle_input();
+bool get_triangle_input();
