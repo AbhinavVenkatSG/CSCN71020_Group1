@@ -42,7 +42,8 @@
         *angle_B = acos(cos_B) * (180.0 / 3.14);
         *angle_C = acos(cos_C) * (180.0 / 3.14);
 
-        printf("The angles of the triangles are:%d,%d,%d", *angle_A, *angle_B, *angle_C);
+        printf("The angles of the triangle are: %.2lf, %.2lf, %.2lf\n", *angle_A, *angle_B, *angle_C);
+
     }
 
 }
