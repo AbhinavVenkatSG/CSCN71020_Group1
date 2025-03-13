@@ -1,5 +1,10 @@
-#pragama once
-#include <bool.h>
+#pragma once
 
 
-bool validateOfTriangle(float sideA, float sideB, float sideC);
+#define NUMLIMIT 100
+
+
+bool validateOfTriangle();
+
+
+void get_triangle_input();
