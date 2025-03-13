@@ -7,4 +7,4 @@
 bool validateOfTriangle();
 
 
-void get_triangle_input();
+int get_triangle_input();

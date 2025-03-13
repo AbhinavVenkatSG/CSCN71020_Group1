@@ -6,7 +6,7 @@
 #include "validatetriangle.h"
 
 
-void get_triangle_input() {
+int get_triangle_input() {
     printf("Triangle\n\n");
 
     // Function 1:
@@ -34,7 +34,7 @@ void get_triangle_input() {
         // add if statement to check for decimal points
         else {
             printf("Input Invalid");
-            return 1;
+            return false;
         }
     }
 
@@ -52,7 +52,7 @@ void get_triangle_input() {
         // add if statement to check for decimal points
         else {
             printf("Invalid Input");
-            return 1;
+            return false;
         }
 
     }
@@ -66,7 +66,14 @@ void get_triangle_input() {
         // add if statement to check for decimal points
         else {
             printf("Input Invalid\n");
-            return 1;
+            return false;
         }
     }
+
+    strtof(sideA, NULL);
+    strtof(sideB, NULL);
+    strtof(sideC, NULL);
+
+    return true;
 }
+

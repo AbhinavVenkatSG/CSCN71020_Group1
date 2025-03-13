@@ -10,9 +10,7 @@
 
 #define NUMLIMIT 100
 
-  strtof(sideA, NULL);
-  strtof(sideB, NULL);
-  strtof(sideC, NULL);
+
 
      //Validate
      if (sideA + sideB > sideC && sideB + sideC > sideA && sideA + sideC > sideB) {
@@ -67,7 +65,7 @@ int main() {
         switch (choice)
         {
         case 1:
-            get_triangle_input();
+           ProgramOn = get_triangle_input();
             break;
        
         case 2:
@@ -80,19 +78,6 @@ int main() {
         default:
             printf("Invalid choice. Try again.\n");
         }
-        
-        //if (choice == 1) {
-       //     get_triangle_input();
-       // }
-       // else if (choice == 2) {
-       //     get_rectangle_input();
-       // }
-       // else if (choice == 3) {
-           // break;
-       // }
-        //else {
-        //    printf("Invalid choice. Try again.\n");
-       // }
    }
     return 0;
 }
