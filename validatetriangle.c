@@ -1,4 +1,5 @@
-#inlcude <bool.h>
+#inlcude <stdbool.h>
+#include <stdio.h>
 #include "validatetriangle.h"
 
 
