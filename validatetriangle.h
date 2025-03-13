@@ -1,5 +1,5 @@
-#pragma once
-#include <stdbool.h>
+#pragama once
+#include <bool.h>
 
 
-bool validateOfTriangle(float sideA, float sideB, float sideC);
+int get_triangle_input();
