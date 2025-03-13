@@ -1,5 +1,5 @@
-#pragama once
-#include <bool.h>
+#pragma once
+#include <stdbool.h>
 
 
 int get_triangle_input();

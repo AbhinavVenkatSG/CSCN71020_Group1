@@ -5,115 +5,98 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include "validatetriangle.h"
+#include <stdlib.h>
 
-#include "validatetriangle.h";
+#define NUMLIMIT 20
 
+void calculate_angles(float, float, float, double*, double*, double*);
 
+double clamp(double value, double min, double max) {
+    if (value < min) return min;
+    if (value > max) return max;
+    return value;
+}
 
 void get_triangle_input() {
     printf("Triangle\n\n");
 
-    // Function 1:
-  // Separate function to get side length input from user as floats
-  // Separate function to validate, no characters, no special characters, no neg numbers
-
-  // initialize variables as strings
     char sideA[NUMLIMIT];
     char sideB[NUMLIMIT];
     char sideC[NUMLIMIT];
 
-
-// Side A
-
-   // Side A Input
-    printf("Enter the first side: "); 
-    int sideASymbols = scanf("%s", sideA);
-
+    // Side A Input
+    printf("Enter the first side: ");
+    scanf("%s", sideA);
+    
     int sideALength = strlen(sideA);
-
-    for (int i = 0; i < sideALength;) {
-        if (isdigit(sideA[i])) {
-            i++;
-        }
-        // add if statement to check for decimal points
-        else {
-            printf("Input Invalid");
-            return 1;
+    bool isValid = true;
+    int dotCount = 0;
+    for (int i = 0; i < sideALength; i++) {
+        if (!isdigit(sideA[i])) {
+            if (sideA[i] == '.' && dotCount == 0) {
+                dotCount++;  
+            } else {
+                isValid = false;
+                break;
+            }
         }
     }
+    if (!isValid) {
+        printf("Invalid Input\n");
+        return;
+    }
 
-   
     // Side B Input
     printf("Enter the second side: ");
-    int sideBSymbols = scanf("%s", sideB);
-
-   int sideBLength = strlen(sideB);
-
-   for (int i = 0; i < sideBLength;) {
-        if (isdigit(sideB[i])) {
-            i++;
+    scanf("%s", sideB);
+    
+    int sideBLength = strlen(sideB);
+    for (int i = 0; i < sideBLength; i++) {
+        if (!isdigit(sideB[i]) && sideB[i] != '.') {
+            printf("Invalid Input\n");
+            return;
         }
-        // add if statement to check for decimal points
-        else {
-            printf("Invalid Input");
-            return 1;
-        }
-        
     }
-   
+    
     // Side C Input
     printf("Enter the third side: ");
-    int sideCSymbols = scanf("%s", sideC);
-
+    scanf("%s", sideC);
+    
     int sideCLength = strlen(sideC);
-
-    for (int i = 0; i < sideCLength;) {
-       if (isdigit(sideC[i])) {
-            i++;
-        }
-       // add if statement to check for decimal points
-        else {
-            printf("Input Invalid\n");
-            return 1;
+    for (int i = 0; i < sideCLength; i++) {
+        if (!isdigit(sideC[i]) && sideC[i] != '.') {
+            printf("Invalid Input\n");
+            return;
         }
     }
 
-  strtof(sideA, NULL);
-  strtof(sideB, NULL);
-  strtof(sideC, NULL);
+    float numA = strtof(sideA, NULL);
+    float numB = strtof(sideB, NULL);
+    float numC = strtof(sideC, NULL);
 
-     //Validate
-     if (sideA + sideB > sideC && sideB + sideC > sideA && sideA + sideC > sideB) {
-
-        return sideA, sideB, sideC;
-        calculate_angles(int* sideA, int* sideC, int* sideB, double* angle_A, double* angle_B, double* angle_C);
-
-    else {
-        
-        printf("Not a Triangle");
-    
+    // Validate triangle inequality
+    if (numA + numB > numC && numB + numC > numA && numA + numC > numB) {
+        double angle_A, angle_B, angle_C;
+        calculate_angles(numA, numB, numC, &angle_A, &angle_B, &angle_C);
+    } else {
+        printf("Not a Triangle\n");
     }
+}
 
-     //Function 2:
-    // Final function to calculate the angle
-    void calculate_angles(int *sideA, int* sideC, int* sideB, double* angle_A, double* angle_B, double* angle_C) {
-    
-        double cos_A = (*sideB) *(* sideB) + (*sideC) * (*sideC) - (*sideA) * (*sideA)) / (2 * (*sideB) * (*sideC));
-        double cos_B = (*sideA) * (*sideB) + (*sideC) * (*sideC) - (*sideB) * (*sideB)) / (2 * (*sideA) * (*sideC));
-        double cos_C = ((*sideA) * (*sideA) + (*sideB) * (*sideB) - (*sideC) * (*sideC)) / (2 * (*sideA) * (*sideB));
+void calculate_angles(float sideA, float sideB, float sideC, double* angle_A, double* angle_B, double* angle_C) {
+    double cos_A = (sideB * sideB + sideC * sideC - sideA * sideA) / (2 * sideB * sideC);
+    double cos_B = (sideA * sideA + sideC * sideC - sideB * sideB) / (2 * sideA * sideC);
+    double cos_C = (sideA * sideA + sideB * sideB - sideC * sideC) / (2 * sideA * sideB);
 
+    cos_A = clamp(cos_A, -1.0, 1.0);
+    cos_B = clamp(cos_B, -1.0, 1.0);
+    cos_C = clamp(cos_C, -1.0, 1.0);
 
-        cos_A = clamp(cos_A, -1.0, 1.0);
-        cos_B = clamp(cos_B, -1.0, 1.0);
-        cos_C = clamp(cos_C, -1.0, 1.0);
+    *angle_A = acos(cos_A) * (180.0 / 3.14);
+    *angle_B = acos(cos_B) * (180.0 / 3.14);
+    *angle_C = acos(cos_C) * (180.0 / 3.14);
 
-        *angle_A = acos(cos_A) * (180.0 / 3.14);
-        *angle_B = acos(cos_B) * (180.0 / 3.14);
-        *angle_C = acos(cos_C) * (180.0 / 3.14);
-
-        printf("The angles of the triangles are:%d,%d,%d", *angle_A, *angle_B, *angle_C);
-    }
-
+    printf("The angles of the triangle are: %.2lf, %.2lf, %.2lf\n", *angle_A, *angle_B, *angle_C);
 }
 
 
