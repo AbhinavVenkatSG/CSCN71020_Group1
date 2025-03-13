@@ -27,7 +27,7 @@
 
      //Function 2:
     // Final function to calculate the angle
-    void calculate_angles(int *sideA, int* sideC, int* sideB, double* angle_A, double* angle_B, double* angle_C) {
+    void  calculate_angles(float *sideA, float* sideC, float* sideB, double* angle_A, double* angle_B, double* angle_C) {
     
         double cos_A = (*sideB) *(* sideB) + (*sideC) * (*sideC) - (*sideA) * (*sideA)) / (2 * (*sideB) * (*sideC));
         double cos_B = (*sideA) * (*sideB) + (*sideC) * (*sideC) - (*sideB) * (*sideB)) / (2 * (*sideA) * (*sideC));
