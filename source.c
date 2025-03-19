@@ -5,6 +5,9 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdlib.h>
+
+#define COORD_LIMIT 2
+
 //#include "validatetriangle.h"
 
 #define NUMLIMIT 100
@@ -12,11 +15,15 @@ char sideA[NUMLIMIT];
 char sideB[NUMLIMIT];
 char sideC[NUMLIMIT];
 
+
 // OK, so I made sure the code is structured properly, but I'm still getting multiple errors in linking (Just KILL me atp).
 // One of the errors was a typo in the include took me 2 hours to figure that one out.
 // The code runs in a separate project, but for some stupid reason, it decided not to work here.
 //For my own insanity i am going have the function in this main.c file apprantly the program is having problem in link our .h file.
 //So if the function is in main it work perfectly fine code safe against most of the test cases we discussed include the double decimal 
+
+
+
 
 bool get_triangle_input(char* side) {
     int dot_counter = 0;
@@ -24,6 +31,7 @@ bool get_triangle_input(char* side) {
     if (length == 0) {
         printf("Invalid Input: Empty input\n");
         return false;
+        exit(EXIT_FAILURE);
     }
     for (int i = 0; i < length; i++) {
         if (isdigit(side[i])) {
@@ -32,6 +40,7 @@ bool get_triangle_input(char* side) {
         else {
             printf("Please Enter a Number as Input ");
                 return false;
+                exit(EXIT_FAILURE);
         }
         if (side[i] == '.') {
             dot_counter++;
@@ -39,17 +48,18 @@ bool get_triangle_input(char* side) {
             if (dot_counter > 1) {
                 printf("Invalid Input: More than one decimal point\n");
                 return false;
+                exit(EXIT_FAILURE);
             }
             continue;
         }
-
-
 
         printf("Invalid Input: Non-numeric character\n");
         return false;
     }
     return true;
 }
+
+
 bool is_valid_input(char* input) {
     int dot_counter = 0;
     int length = strlen(input);
@@ -58,6 +68,7 @@ bool is_valid_input(char* input) {
     if (length == 0) {
         printf("Invalid Input: Empty input\n");
         return false;
+        exit(EXIT_FAILURE);
     }
     for (int i = 0; i < length; i++) {
         if (isdigit(input[i])) {
@@ -71,11 +82,13 @@ bool is_valid_input(char* input) {
             if (dot_counter > 1) {
                 printf("Invalid Input: More than one decimal point\n");
                 return false;
+                exit(EXIT_FAILURE);
             }
             continue;
         }
         printf("Invalid Input: Non-numeric character\n");
         return false;
+        exit(EXIT_FAILURE);
     }
 
     return true;
@@ -97,16 +110,16 @@ float get_valid_input(char* prompt) {
         }
         return value;
     }
-float function(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8) {
+
+void RectangleFunction(float P1[COORD_LIMIT], float P2[COORD_LIMIT], float P3[COORD_LIMIT], float P4[COORD_LIMIT]) {
     // Initial 
     int x = 0;
     int y = 1;
-    //            0 1
-    //            x y
-    float Q1[2] = { 0,0 };
-    float Q2[2] = { 1,0 };
-    float Q3[2] = { 0,-1 };
-    float Q4[2] = { 1,-1 };
+                
+   float Q1[COORD_LIMIT] = { P1[x],P1[y] };
+   float Q2[COORD_LIMIT] = { P2[x],P2[y] };
+   float Q3[COORD_LIMIT] = { P3[x],P3[y] };
+   float Q4[COORD_LIMIT] = { P4[x],P4[y] };
 
 
     // Largest Y Value 
@@ -208,8 +221,9 @@ float function(float point1, float point2, float point3, float point4, float poi
 }
  int main() {
         int choice;
-
-        while (1) {
+        bool program = true;;
+      
+        while (program) {
             printf("\nMenu:\n1. Triangle Feature\n2. Rectangle Feature\n3. Exit\n");
             printf("Enter your choice: ");
             scanf("%d", &choice);
@@ -219,19 +233,19 @@ float function(float point1, float point2, float point3, float point4, float poi
                 printf("Enter the length of the first side: ");
                 scanf("%s", sideA);
                 if (get_triangle_input(sideA)==false) {
-                    return 1;
+                    program = false;
                 }
 
                 printf("Enter the length of the second side: ");
                 scanf("%s", sideB);
                 if (get_triangle_input(sideB)==false) {
-                    return 1;
+                    program = false;
                 }
 
                 printf("Enter the length of the third side: ");
                 scanf("%s", sideC);
                 if (get_triangle_input(sideC)==false) {
-                    return 1;
+                    program = false;
                 }
                 int sideA_int = atoi(sideA);                    
                 int sideB_int = atoi(sideB);
@@ -241,14 +255,14 @@ float function(float point1, float point2, float point3, float point4, float poi
                 }
                 else {
                     printf("Not a Triangle");
-                    return false;
+                    program = false;
 
                 }
             }
             else if (choice == 2) {
                 // Rectangle functionality (now implemented)
-
-                float point1 = get_valid_input("Enter point1 (x): ");
+                
+                float point1 = get_valid_input("Enter point1 (x): ");        
                 float point2 = get_valid_input("Enter point2 (y): ");
                 float point3 = get_valid_input("Enter point3 (x): ");
                 float point4 = get_valid_input("Enter point4 (y): ");
@@ -262,15 +276,12 @@ float function(float point1, float point2, float point3, float point4, float poi
                 float corner3[2] = { point5, point6 };
                 float corner4[2] = { point7, point8 };
                 
-                float function(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8);
+                RectangleFunction(corner1, corner2, corner3, corner4);
                 
-                
-
-
-                return 0;
+                program = false;
             }
             else if (choice == 3) {
-                break;
+                program = false;
             }
             else {
                 printf("Invalid choice. Try again.\n");
