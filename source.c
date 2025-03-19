@@ -1,145 +1,72 @@
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
-
+#include <stdbool.h>
+#include <stdlib.h>
+#include "validatetriangle.h"
 
 #define NUMLIMIT 100
+char sideA[NUMLIMIT];
+char sideB[NUMLIMIT];
+char sideC[NUMLIMIT];
+
+// OK, so I made sure the code is structured properly, but I'm still getting multiple errors in linking (Just KILL me atp).
+// One of the errors was a typo in the include this  took me 2 hours to figure that one out.
+// The code runs in a separate project, but for some stupid reason, it decided not to work here.
+ int main() {
+        int choice;
+
+        while (1) {
+            printf("\nMenu:\n1. Triangle Feature\n2. Rectangle Feature\n3. Exit\n");
+            printf("Enter your choice: ");
+            scanf("%d", &choice);
+            getchar();
+
+            if (choice == 1) {
+                printf("Enter the length of the first side: ");
+                scanf("%s", sideA);
+                if (get_triangle_input(sideA)==false) {
+                    return 1;
+                }
+
+                printf("Enter the length of the second side: ");
+                scanf("%s", sideB);
+                if (get_triangle_input(sideB)==false) {
+                    return 1;
+                }
+
+                printf("Enter the length of the third side: ");
+                scanf("%s", sideC);
+                if (get_triangle_input(sideC)==false) {
+                    return 1;
+                }
+                int sideA_int = atoi(sideA);                    
+                int sideB_int = atoi(sideB);
+                int sideC_int = atoi(sideC);
+                if (sideA_int + sideB_int > sideC_int && sideB_int + sideC_int > sideA_int && sideA_int + sideC_int > sideB_int) {
+                    return true;
+                }
+                else {
+                    printf("Not a Triangle");
+                    return false;
+
+                }
 
 
-void get_triangle_input() {
-    printf("Triangle\n\n");
 
-    // Function 1:
-  // Separate function to get side length input from user as floats
-  // Separate function to validate, no characters, no special characters, no neg numbers
-
-  // initialize variables as strings
-    char sideA[NUMLIMIT];
-    char sideB[NUMLIMIT];
-    char sideC[NUMLIMIT];
-
-
-// Side A
-
-   // Side A Input
-    printf("Enter the first side: "); 
-    int sideASymbols = scanf("%s", sideA);
-
-    int sideALength = strlen(sideA);
-
-    for (int i = 0; i < sideALength;) {
-        if (isdigit(sideA[i])) {
-            i++;
+            }
+            else if (choice == 2) {
+                // Rectangle functionality (not implemented)
+            }
+            else if (choice == 3) {
+                break;
+            }
+            else {
+                printf("Invalid choice. Try again.\n");
+            }
         }
-        // add if statement to check for decimal points
-        else {
-            printf("Input Invalid");
-            return 1;
-        }
+
+        return 0;
     }
-
-   
-    // Side B Input
-    printf("Enter the second side: ");
-    int sideBSymbols = scanf("%s", sideB);
-
-   int sideBLength = strlen(sideB);
-
-   for (int i = 0; i < sideBLength;) {
-        if (isdigit(sideB[i])) {
-            i++;
-        }
-        // add if statement to check for decimal points
-        else {
-            printf("Invalid Input");
-            return 1;
-        }
-        
-    }
-   
-    // Side C Input
-    printf("Enter the third side: ");
-    int sideCSymbols = scanf("%s", sideC);
-
-    int sideCLength = strlen(sideC);
-
-    for (int i = 0; i < sideCLength;) {
-       if (isdigit(sideC[i])) {
-            i++;
-        }
-       // add if statement to check for decimal points
-        else {
-            printf("Input Invalid\n");
-            return 1;
-        }
-    }
-
-  strtof(sideA, NULL);
-  strtof(sideB, NULL);
-  strtof(sideC, NULL);
-
-     //Validate
-     if (sideA + sideB > sideC && sideB + sideC > sideA && sideA + sideC > sideB) {
-
-        return sideA, sideB, sideC;
-        calculate_angles(int* sideA, int* sideC, int* sideB, double* angle_A, double* angle_B, double* angle_C);
-
-    else {
-        
-        printf("Not a Triangle");
-    
-    }
-
-     //Function 2:
-    // Final function to calculate the angle
-    void calculate_angles(int *sideA, int* sideC, int* sideB, double* angle_A, double* angle_B, double* angle_C) {
-    
-        double cos_A = (*sideB) *(* sideB) + (*sideC) * (*sideC) - (*sideA) * (*sideA)) / (2 * (*sideB) * (*sideC));
-        double cos_B = (*sideA) * (*sideB) + (*sideC) * (*sideC) - (*sideB) * (*sideB)) / (2 * (*sideA) * (*sideC));
-        double cos_C = ((*sideA) * (*sideA) + (*sideB) * (*sideB) - (*sideC) * (*sideC)) / (2 * (*sideA) * (*sideB));
-
-
-        cos_A = clamp(cos_A, -1.0, 1.0);
-        cos_B = clamp(cos_B, -1.0, 1.0);
-        cos_C = clamp(cos_C, -1.0, 1.0);
-
-        *angle_A = acos(cos_A) * (180.0 / 3.14);
-        *angle_B = acos(cos_B) * (180.0 / 3.14);
-        *angle_C = acos(cos_C) * (180.0 / 3.14);
-
-        printf("The angles of the triangles are:%d,%d,%d", *angle_A, *angle_B, *angle_C);
-    }
-}
-
-
-   void get_rectangle_input() {
-       int test;
-    printf("Rectangle\n");
-
-
-}
-
-int main() {
-    int choice;
-    while (1) {
-        printf("\nMenu:\n1. Triangle Feature\n2. Rectangle Feature\n3. Exit\n");
-        printf("Enter your choice: ");
-        scanf_s("%d", &choice);
-        if (choice == 1) {
-            get_triangle_input();
-        }
-        else if (choice == 2) {
-            get_rectangle_input();
-        }
-        else if (choice == 3) {
-           // break;
-        }
-        else {
-            printf("Invalid choice. Try again.\n");
-        }
-   }
-    return 0;
-}
